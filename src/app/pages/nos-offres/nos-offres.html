@@ -1,0 +1,101 @@
+
+
+<div class="min-h-screen bg-[#111111] px-4 py-12">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- En-tête -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-orange-500">
+        Nos offres
+      </h1>
+
+      <p class="text-gray-400 mt-4">
+        Découvrez les opportunités professionnelles proposées par nos entreprises partenaires.
+      </p>
+    </div>
+
+    <!-- Message si aucune offre -->
+    @if (offres.length === 0) {
+      <div class="text-center bg-[#1c1c1c] border border-gray-700 rounded-xl p-10">
+        <h2 class="text-white text-xl font-semibold">
+          Aucune offre disponible pour le moment
+        </h2>
+
+        <p class="text-gray-400 mt-3">
+          Revenez bientôt pour découvrir de nouvelles opportunités.
+        </p>
+      </div>
+    }
+
+    <!-- Cartes des offres -->
+    @if (offres.length > 0) {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        @for (offre of offres; track offre.id) {
+          <div class="bg-[#1c1c1c] border border-gray-700 rounded-xl p-6 hover:border-orange-500 transition">
+
+            <a
+  [routerLink]="['/offre', offre.id]"
+  class="text-xl font-bold text-orange-500 hover:text-orange-400 transition"
+>
+  {{ offre.titre }}
+</a>
+
+            <p class="text-white font-medium mt-2">
+              {{ offre.entreprise }}
+            </p>
+
+            <div class="mt-4 space-y-2 text-gray-400 text-sm">
+              <p>
+                <span class="text-white">Domaine :</span>
+                {{ offre.domaine }}
+              </p>
+
+              <p>
+                <span class="text-white">Contrat :</span>
+                {{ offre.contrat }}
+              </p>
+
+              <p>
+                <span class="text-white">Localisation :</span>
+                {{ offre.localisation }}
+              </p>
+
+              <p>
+                <span class="text-white">Date limite :</span>
+                {{ offre.dateLimite }}
+              </p>
+            </div>
+
+            <div class="mt-5">
+              <h3 class="text-white font-semibold">
+                Description
+              </h3>
+
+              <p class="text-gray-400 text-sm mt-2 whitespace-pre-line">
+                {{ offre.description }}
+              </p>
+            </div>
+
+            <div class="mt-4">
+              <h3 class="text-white font-semibold">
+                Compétences recherchées
+              </h3>
+
+              <p class="text-gray-400 text-sm mt-2">
+                {{ offre.competences }}
+              </p>
+            </div>
+
+          </div>
+        }
+
+      </div>
+    }
+
+  </div>
+
+</div>
+
+

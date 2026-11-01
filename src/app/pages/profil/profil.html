@@ -1,0 +1,218 @@
+<div class="min-h-screen bg-[#111111] px-4 py-12">
+
+  <div class="max-w-5xl mx-auto">
+
+
+    <!-- Titre -->
+    <div class="text-center mb-10">
+      <h1 class="text-orange-500 text-4xl font-bold">Mon profil</h1>
+      <p class="text-gray-400 mt-3">
+        Gérez vos informations personnelles et professionnelles
+      </p>
+    </div>
+
+    <!-- Profil -->
+    <div class="bg-[#1c1c1c] rounded-lg border border-gray-700 p-8">
+
+      <!-- Informations personnelles -->
+      <h2 class="text-white text-2xl font-semibold mb-6">
+        Informations personnelles
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div>
+          <label class="block text-white mb-2">Nom</label>
+<input
+  type="text"
+  name="nom"
+  [(ngModel)]="nom"
+  placeholder="Votre nom"
+  class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500">
+        <div>
+          <label class="block text-white mb-2">Prénom</label>
+          <input
+  type="text"
+  name="prenom"
+  [(ngModel)]="prenom"
+  placeholder="Votre prénom"
+  class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500">
+        </div>
+
+        <div>
+          <label class="block text-white mb-2">Adresse email</label>
+          <input
+  type="email"
+  name="email"
+  [(ngModel)]="email"
+  placeholder="Votre adresse email"
+  class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500">
+        </div>
+
+        <div>
+          <label class="block text-white mb-2">Téléphone</label>
+         <input
+  type="tel"
+  name="telephone"
+  [(ngModel)]="telephone"
+  placeholder="Votre numéro de téléphone"
+  class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500">
+        </div>
+
+      </div>
+
+      <!-- Profil professionnel -->
+      <div class="mt-10">
+        <h2 class="text-white text-2xl font-semibold mb-6">
+          Profil professionnel
+        </h2>
+
+        <div class="space-y-6">
+
+          <div>
+            <label class="block text-white mb-2">Domaine</label>
+            <input
+  type="text"
+  name="domaine"
+  [(ngModel)]="domaine"
+  placeholder="Ex : Développement web, Data Science..."
+  class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500">
+
+          <div>
+            <label class="block text-white mb-2">Compétences</label>
+           <textarea
+  rows="4"
+  name="competences"
+  [(ngModel)]="competences"
+  placeholder="Présentez vos compétences..."
+  class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-white mb-2">À propos de moi</label>
+            <textarea
+  rows="5"
+  name="apropos"
+  [(ngModel)]="apropos"
+  placeholder="Présentez-vous..."
+  class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500"></textarea>
+          </div>
+
+        </div>
+      </div>
+      <!-- CV du talent -->
+<div class="mt-10">
+
+  <h2 class="text-white text-2xl font-semibold mb-6">
+    Mon CV
+  </h2>
+
+  <div class="border border-gray-600 rounded-lg p-6">
+
+    <p class="text-gray-400 mb-4">
+      Ajoutez votre CV au format PDF pour permettre aux entreprises
+      de découvrir votre parcours professionnel.
+    </p>
+
+    <label class="block text-white mb-2">
+      Sélectionner votre CV
+    </label>
+
+    <input
+      type="file"
+      accept=".pdf,application/pdf"
+      (change)="onCvSelected($event)"
+      class="w-full bg-[#111111] border border-gray-600
+             text-white rounded-md p-3
+             file:bg-orange-500 file:text-white
+             file:border-0 file:rounded-md
+             file:px-4 file:py-2 file:mr-4"
+    >
+
+    @if (cvName) {
+  <div class="mt-5 p-4 bg-[#111111] border border-gray-700 rounded-lg">
+
+    <p class="text-green-500 font-medium mb-4">
+      CV enregistré : {{ cvName }}
+    </p>
+
+    <div class="flex flex-wrap gap-3">
+
+      <!-- Consulter -->
+      @if (cvUrl) {
+        <a
+          [href]="cvUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
+        >
+          Consulter
+        </a>
+
+        <!-- Télécharger -->
+        <a
+          [href]="cvUrl"
+          [attr.download]="cvName"
+          class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md"
+        >
+          Télécharger
+        </a>
+      }
+
+      <!-- Supprimer -->
+      <button
+        type="button"
+        (click)="supprimerCv()"
+        class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md"
+      >
+        Supprimer
+      </button>
+
+    </div>
+  </div>
+}
+
+@if (cvError) {
+  <p class="text-red-500 text-sm mt-3">
+    {{ cvError }}
+  </p>
+}
+
+    <p class="text-gray-500 text-sm mt-3">
+      Format accepté : PDF uniquement.
+    </p>
+
+  </div>
+
+</div>
+      <!-- Bouton -->
+      <div class="mt-8 flex justify-end">
+        <div class="flex flex-wrap gap-4 mt-6">
+
+  <button
+    type="button"
+    (click)="enregistrerProfil()"
+    class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition"
+  >
+    Enregistrer
+  </button>
+
+  <button
+    type="button"
+    (click)="reinitialiserFormulaire()"
+    class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition"
+  >
+    Réinitialiser
+  </button>
+
+</div>
+@if (messageConfirmation) {
+  <p class="mt-4 text-sm text-orange-400">
+    {{ messageConfirmation }}
+  </p>
+}
+      </div>
+
+    </div>
+  </div>
+</div>

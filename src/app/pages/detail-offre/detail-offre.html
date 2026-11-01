@@ -1,0 +1,104 @@
+
+<div class="min-h-screen bg-[#111111] px-4 py-12">
+
+  <div class="max-w-4xl mx-auto">
+
+    @if (offre) {
+      <div class="bg-[#1c1c1c] border border-gray-700 rounded-xl p-6 md:p-10">
+
+        <a
+          routerLink="/nos-offres"
+          class="text-orange-500 hover:text-orange-400 transition"
+        >
+          ← Retour aux offres
+        </a>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-orange-500 mt-8">
+          {{ offre.titre }}
+        </h1>
+
+        <p class="text-white text-xl font-semibold mt-3">
+          {{ offre.entreprise }}
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+
+          <div>
+            <p class="text-gray-500 text-sm">Domaine</p>
+            <p class="text-white mt-1">{{ offre.domaine }}</p>
+          </div>
+
+          <div>
+            <p class="text-gray-500 text-sm">Type de contrat</p>
+            <p class="text-white mt-1">{{ offre.contrat }}</p>
+          </div>
+
+          <div>
+            <p class="text-gray-500 text-sm">Localisation</p>
+            <p class="text-white mt-1">{{ offre.localisation }}</p>
+          </div>
+
+          <div>
+            <p class="text-gray-500 text-sm">Date limite de candidature</p>
+            <p class="text-white mt-1">{{ offre.dateLimite }}</p>
+          </div>
+
+        </div>
+
+        <div class="border-t border-gray-700 mt-8 pt-8">
+          <h2 class="text-white text-xl font-bold">
+            Description de l'offre
+          </h2>
+
+          <p class="text-gray-400 mt-4 whitespace-pre-line">
+            {{ offre.description }}
+          </p>
+        </div>
+
+        <div class="border-t border-gray-700 mt-8 pt-8">
+          <h2 class="text-white text-xl font-bold">
+            Compétences recherchées
+          </h2>
+
+          <p class="text-gray-400 mt-4 whitespace-pre-line">
+            {{ offre.competences }}
+          </p>
+        </div>
+
+        <div class="mt-10">
+          <a
+  [routerLink]="['/postuler', offre.id]"
+  class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition"
+>
+  Postuler
+</a>
+        </div>
+
+      </div>
+    }
+
+    @if (!offre) {
+      <div class="text-center bg-[#1c1c1c] border border-gray-700 rounded-xl p-10">
+
+        <h2 class="text-white text-2xl font-bold">
+          Offre introuvable
+        </h2>
+
+        <p class="text-gray-400 mt-3">
+          Cette offre n'existe pas ou a été supprimée.
+        </p>
+
+        <a
+          routerLink="/nos-offres"
+          class="inline-block mt-6 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition"
+        >
+          Voir les offres
+        </a>
+
+      </div>
+    }
+
+  </div>
+
+</div>
+

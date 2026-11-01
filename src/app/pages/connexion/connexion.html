@@ -1,0 +1,149 @@
+<div class="min-h-screen bg-[#111111] flex items-center justify-center px-4">
+
+  <div class="w-full max-w-md bg-[#1c1c1c] rounded-lg p-8 shadow-lg">
+
+    <!-- Titre -->
+    <div class="text-center mb-8">
+      <h1 class="text-orange-500 text-3xl font-bold">
+        ODCNetworking
+      </h1>
+
+      <h2 class="text-white text-2xl font-semibold mt-4">
+        Se connecter
+      </h2>
+
+      <p class="text-gray-400 mt-2">
+        Connectez-vous à votre compte
+      </p>
+    </div>
+
+    <!-- Formulaire de connexion -->
+    <form (ngSubmit)="seConnecter()" class="space-y-5" novalidate>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-white mb-2">
+          Adresse email
+        </label>
+
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Entrez votre adresse email"
+          class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500"
+        >
+      </div>
+
+      <!-- Mot de passe -->
+      <div>
+        <label class="block text-white mb-2">
+          Mot de passe
+        </label>
+
+        <input
+          type="password"
+          name="motDePasse"
+          [(ngModel)]="motDePasse"
+          placeholder="Entrez votre mot de passe"
+          class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500"
+        >
+      </div>
+
+      <!-- Mot de passe oublié -->
+      <div class="text-right">
+        <button
+          type="button"
+          (click)="ouvrirRecuperation()"
+          class="text-orange-500 text-sm hover:text-orange-400"
+        >
+          Mot de passe oublié ?
+        </button>
+      </div>
+
+      <!-- Message de confirmation -->
+      @if (messageErreur) {
+  <p class="text-red-500 text-sm text-center">
+    {{ messageErreur }}
+  </p>
+}
+
+@if (messageConfirmation) {
+  <p class="text-green-500 text-sm text-center">
+    {{ messageConfirmation }}
+  </p>
+}
+      <!-- Bouton -->
+      <button
+        type="submit"
+        class="w-full bg-orange-500 text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition"
+      >
+        Se connecter
+      </button>
+
+    </form>
+
+    <!-- Fenêtre de récupération -->
+    @if (afficherRecuperation) {
+      <div class="mt-8 border border-gray-600 rounded-lg p-5">
+
+        <h3 class="text-white text-xl font-semibold mb-3">
+          Récupération du mot de passe
+        </h3>
+
+        <p class="text-gray-400 text-sm mb-4">
+          Saisissez votre adresse email pour demander la réinitialisation de votre mot de passe.
+        </p>
+
+        <form (ngSubmit)="demanderReinitialisation()" novalidate>
+
+          <input
+            type="email"
+            name="emailRecuperation"
+            [(ngModel)]="email"
+            placeholder="Votre adresse email"
+            class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500"
+          >
+
+          @if (messageRecuperation) {
+            <p class="text-orange-400 text-sm mt-3">
+              {{ messageRecuperation }}
+            </p>
+          }
+
+          <button
+            type="submit"
+            class="w-full mt-4 bg-orange-500 text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition"
+          >
+            Envoyer la demande
+          </button>
+
+        </form>
+
+        <button
+          type="button"
+          (click)="fermerRecuperation()"
+          class="w-full mt-3 text-gray-400 hover:text-white"
+        >
+          Retour à la connexion
+        </button>
+
+      </div>
+    }
+
+    <!-- Inscription -->
+    <div class="text-center mt-6">
+      <p class="text-gray-400">
+        Vous n'avez pas encore de compte ?
+        <a
+          routerLink="/inscription"
+          class="text-orange-500 hover:text-orange-400 font-semibold"
+        >
+          S'inscrire
+        </a>
+      </p>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,135 @@
+<!-- <p>inscription works!</p> -->
+
+
+<div class="min-h-screen bg-[#111111] flex items-center justify-center px-4 py-10">
+
+  <div class="w-full max-w-md bg-[#1c1c1c] rounded-lg p-8 shadow-lg">
+
+    <!-- Titre -->
+    <div class="text-center mb-8">
+
+      <h1 class="text-orange-500 text-3xl font-bold">
+        ODCNetworking
+      </h1>
+
+      <h2 class="text-white text-2xl font-semibold mt-4">
+        Créer un compte
+      </h2>
+
+      <p class="text-gray-400 mt-2">
+        Rejoignez la communauté ODCNetworking
+      </p>
+
+    </div>
+
+    <!-- Formulaire -->
+   <form (ngSubmit)="inscrire()" class="space-y-5">
+
+  <!-- Nom -->
+  <div>
+    <label class="block text-white mb-2">Nom</label>
+    <input
+      type="text"
+      name="nom"
+      [(ngModel)]="nom"
+      required
+      placeholder="Entrez votre nom"
+      class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500"
+    >
+  </div>
+
+  <!-- Prénom -->
+  <div>
+    <label class="block text-white mb-2">Prénom</label>
+    <input
+      type="text"
+      name="prenom"
+      [(ngModel)]="prenom"
+      required
+      placeholder="Entrez votre prénom"
+      class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500"
+    >
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label class="block text-white mb-2">Adresse email</label>
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="email"
+      required
+      placeholder="Entrez votre adresse email"
+      class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500"
+    >
+  </div>
+
+  <!-- Mot de passe -->
+  <div>
+    <label class="block text-white mb-2">Mot de passe</label>
+    <input
+      type="password"
+      name="motDePasse"
+      [(ngModel)]="motDePasse"
+      required
+      placeholder="Créez un mot de passe"
+      class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500"
+    >
+  </div>
+
+  <!-- Confirmation -->
+  <div>
+    <label class="block text-white mb-2">Confirmer le mot de passe</label>
+    <input
+      type="password"
+      name="confirmationMotDePasse"
+      [(ngModel)]="confirmationMotDePasse"
+      required
+      placeholder="Confirmez votre mot de passe"
+      class="w-full bg-[#111111] border border-gray-600 text-white rounded-md px-4 py-3 outline-none focus:border-orange-500"
+    >
+  </div>
+
+ <!-- Bouton -->
+<button
+  type="submit"
+  class="w-full bg-orange-500 text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition"
+>
+  S'inscrire
+</button>
+@if (messageErreur) {
+  <p class="text-red-500 text-sm text-center">
+    {{ messageErreur }}
+  </p>
+}
+
+@if (messageConfirmation) {
+  <p class="text-green-500 text-sm text-center">
+    {{ messageConfirmation }}
+  </p>
+}
+
+
+</form>
+
+    <!-- Connexion -->
+    <div class="text-center mt-6">
+
+      <p class="text-gray-400">
+
+        Vous avez déjà un compte ?
+
+        <a
+          [routerLink]="['/connexion']"
+          class="text-orange-500 hover:text-orange-400 font-semibold"
+        >
+          Se connecter
+        </a>
+
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

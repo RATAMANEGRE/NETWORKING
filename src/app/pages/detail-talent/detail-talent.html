@@ -1,0 +1,132 @@
+<!-- CV -->
+
+<div class="min-h-screen bg-[#111111] px-4 py-12">
+
+  <div class="max-w-4xl mx-auto">
+
+    <!-- Retour aux talents -->
+    <a
+      routerLink="/talents"
+      class="inline-block text-orange-500 hover:text-orange-400 mb-8 transition"
+    >
+      ← Retour aux talents
+    </a>
+
+    @if (talent) {
+
+      <!-- En-tête du profil -->
+      <div class="bg-[#1c1c1c] border border-gray-700 rounded-xl p-8">
+
+        <div class="flex flex-col md:flex-row items-center gap-6">
+
+          <div class="w-28 h-28 rounded-full bg-orange-500 flex items-center justify-center">
+            <span class="text-white text-4xl font-bold">
+              {{ talent.initiales }}
+            </span>
+          </div>
+
+          <div class="text-center md:text-left">
+            <h1 class="text-white text-3xl font-bold">
+              {{ talent.nom }}
+            </h1>
+
+            <p class="text-orange-500 text-lg mt-2">
+              {{ talent.domaine }}
+            </p>
+
+            <p class="text-gray-400 mt-2">
+              Membre de la communauté ODCNetworking
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Présentation -->
+      <div class="bg-[#1c1c1c] border border-gray-700 rounded-xl p-8 mt-8">
+
+        <h2 class="text-white text-2xl font-semibold mb-4">
+          À propos de moi
+        </h2>
+
+        <p class="text-gray-400 leading-7">
+          {{ talent.apropos }}
+        </p>
+
+      </div>
+
+      <!-- Compétences -->
+      <div class="bg-[#1c1c1c] border border-gray-700 rounded-xl p-8 mt-8">
+
+        <h2 class="text-white text-2xl font-semibold mb-6">
+          Mes compétences
+        </h2>
+
+        <div class="flex flex-wrap gap-3">
+
+          @for (competence of talent.competences; track competence) {
+            <span class="bg-[#333333] text-orange-500 px-4 py-2 rounded-md">
+              {{ competence }}
+            </span>
+          }
+
+        </div>
+
+      </div>
+
+      <!-- CV -->
+      <div class="bg-[#1c1c1c] border border-gray-700 rounded-xl p-8 mt-8">
+
+        <h2 class="text-white text-2xl font-semibold mb-4">
+          Curriculum Vitae
+        </h2>
+
+        @if (cvUrl) {
+
+          <p class="text-gray-300 mb-5">
+            CV disponible : {{ cvName }}
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+
+            <a
+              [href]="cvUrl"
+              target="_blank"
+              rel="noopener"
+              class="bg-orange-500 text-white px-5 py-3 rounded-md hover:bg-orange-600 transition"
+            >
+              Consulter le CV
+            </a>
+
+            <a
+              [href]="cvUrl"
+              [download]="cvName"
+              class="bg-[#333333] text-white px-5 py-3 rounded-md hover:bg-gray-600 transition"
+            >
+              Télécharger le CV
+            </a>
+
+          </div>
+
+        } @else {
+
+          <p class="text-gray-400">
+            Aucun CV disponible pour le moment.
+          </p>
+
+        }
+
+      </div>
+
+    } @else {
+
+      <p class="text-red-400 text-center text-xl">
+        Aucun talent trouvé.
+      </p>
+
+    }
+
+  </div>
+
+</div>

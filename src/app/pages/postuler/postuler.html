@@ -1,0 +1,101 @@
+<div class="min-h-screen bg-[#111111] px-4 py-12">
+
+  <div class="max-w-2xl mx-auto">
+
+    <div class="text-center mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold text-orange-500">
+        Formulaire de candidature
+      </h1>
+
+      <p class="text-gray-400 mt-3">
+        Remplissez les informations ci-dessous pour soumettre votre candidature.
+      </p>
+    </div>
+
+    <form
+      (ngSubmit)="envoyerCandidature()"
+      class="bg-[#1c1c1c] border border-gray-700 rounded-xl p-6 md:p-8 space-y-5"
+    >
+
+      <div>
+        <label class="block text-white mb-2">Nom</label>
+        <input
+          type="text"
+          name="nom"
+          [(ngModel)]="nom"
+          placeholder="Votre nom"
+          class="w-full bg-[#111111] border border-gray-700 rounded-lg px-4 py-3 text-white outline-none focus:border-orange-500"
+        >
+      </div>
+
+      <div>
+        <label class="block text-white mb-2">Prénom</label>
+        <input
+          type="text"
+          name="prenom"
+          [(ngModel)]="prenom"
+          placeholder="Votre prénom"
+          class="w-full bg-[#111111] border border-gray-700 rounded-lg px-4 py-3 text-white outline-none focus:border-orange-500"
+        >
+      </div>
+
+      <div>
+        <label class="block text-white mb-2">Adresse e-mail</label>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="exemple@email.com"
+          class="w-full bg-[#111111] border border-gray-700 rounded-lg px-4 py-3 text-white outline-none focus:border-orange-500"
+        >
+      </div>
+
+      <div>
+        <label class="block text-white mb-2">Téléphone</label>
+        <input
+          type="tel"
+          name="telephone"
+          [(ngModel)]="telephone"
+          placeholder="Votre numéro de téléphone"
+          class="w-full bg-[#111111] border border-gray-700 rounded-lg px-4 py-3 text-white outline-none focus:border-orange-500"
+        >
+      </div>
+
+      <div>
+        <label class="block text-white mb-2">Lettre de motivation</label>
+        <textarea
+          name="motivation"
+          [(ngModel)]="motivation"
+          rows="6"
+          placeholder="Présentez votre motivation..."
+          class="w-full bg-[#111111] border border-gray-700 rounded-lg px-4 py-3 text-white outline-none focus:border-orange-500"
+        ></textarea>
+      </div>
+
+      @if (messageErreur) {
+        <p class="text-red-500">{{ messageErreur }}</p>
+      }
+
+      @if (messageConfirmation) {
+        <p class="text-green-500">{{ messageConfirmation }}</p>
+      }
+
+      <button
+        type="submit"
+        class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition"
+      >
+        Envoyer ma candidature
+      </button>
+
+      <a
+        [routerLink]="['/offre', offreId]"
+        class="block text-center text-gray-400 hover:text-orange-500 transition"
+      >
+        Retour à l'offre
+      </a>
+
+    </form>
+
+  </div>
+
+</div>
